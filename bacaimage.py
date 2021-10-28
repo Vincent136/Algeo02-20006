@@ -11,6 +11,7 @@ def bacaImage(path):
 
 def arrayToImage(red, green, blue, path):   
     # program menerima input 3 buah matriks yaitu matriks red, green, dan blue dan string yang mengandung path dari file yang ingin disimpan
+
     # proses menggabungkan komponen rgb
     image = []
     for i in range(len(red)):
@@ -24,6 +25,7 @@ def arrayToImage(red, green, blue, path):
         image.append(outer)
     image = np.array(image)
 
+    #save image ke file
     image = image/255
     image = np.clip(image,0,1)
     image_out = Image.fromarray(np.uint8(image*255))

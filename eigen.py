@@ -12,9 +12,3 @@ def eigenvalue(x):
         eigen.append(np.round(a[j][j],12))
 
     return np.unique(eigen)
-
-a = np.array([[3, -2, 0], 
-              [-2, 3, 0],
-              [0, 0, 5]])
-
-print(eigenvalue(a))

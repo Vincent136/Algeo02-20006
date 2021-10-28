@@ -1,9 +1,8 @@
 from bacaimage import *
-from randomarray import *
 
 # baca gambar ubah ke array 3 dimensi yang isinya matriks red, green, blue
 
-array = bacaImage("test/gambar.jpg")
+array = bacaImage("test/gambar2.png")
 
 #pisah komponen masing-masig rgb
 
@@ -17,7 +16,7 @@ red = red.transpose()
 green = green.transpose()
 blue = blue.transpose()
 
-arrayToImage(red, green, blue, "test/gambarTranspose.jpg")
+arrayToImage(red, green, blue, "test/gambarTranspose.png")
 
 red = red.transpose()
 green = green.transpose()
@@ -28,4 +27,4 @@ green = np.fliplr(green)
 blue = np.fliplr(blue)
 
 
-arrayToImage(red, green, blue, "test/gambarflip.jpg")
+arrayToImage(red, green, blue, "test/gambarflip.png")

@@ -61,9 +61,7 @@ def makeone(x,a):
     for i in range(a, x.shape[1]):
         x[a][i] = x[a][i] / first
 
-def eigenvector(x):
-    ei = eigenvalue(x)
-    print(ei)
+def eigenvector(x, ei):
     size = x.shape[0]
     eva=[]
     for i in range(ei.size):
@@ -113,8 +111,9 @@ def eigenvector(x):
         eva.append(ev)
     return eva
 
-# A = [[0,0,-2],[1,2,1],[1,0,3]]
-# A = np.array(A)
-# print(eigenvector(A))
+A = [[0,0,-2],[1,2,1],[1,0,3]]
+A = np.array(A)
+x = eigenvalue(A)
+print(eigenvector(A, x))
 
 

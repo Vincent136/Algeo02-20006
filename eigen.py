@@ -1,52 +1,52 @@
 import numpy as np
 from numpy.linalg import qr
 
-def QR(x):
+# def QR(x):
 
-    # proses membentuk matrix Q R dengan metode Gram Schmidt
+#     # proses membentuk matrix Q R dengan metode Gram Schmidt
 
-    A = []
-    length = x.shape[0]
-    for i in range(length):
-        A = np.append(A , x[:,i], axis = 0)
-    A = np.reshape(A, (length, length))
+#     A = []
+#     length = x.shape[0]
+#     for i in range(length):
+#         A = np.append(A , x[:,i], axis = 0)
+#     A = np.reshape(A, (length, length))
 
-    e = []
-    sum = 0
-    for i in range(length):
-        sum += A[0][i] * A[0][i]
-    e = np.append(e, np.multiply(A[0], (1 / np.sqrt(sum))))
-    e = np.reshape(e, (1, length))
+#     e = []
+#     sum = 0
+#     for i in range(length):
+#         sum += A[0][i] * A[0][i]
+#     e = np.append(e, np.multiply(A[0], (1 / np.sqrt(sum))))
+#     e = np.reshape(e, (1, length))
 
-    for i in range(1, length):
-        temp = A[i]
-        for j in range(i):
-            temp = np.subtract(temp , e[j] * np.dot(A[i], e[j]))
+#     for i in range(1, length):
+#         temp = A[i]
+#         for j in range(i):
+#             temp = np.subtract(temp , e[j] * np.dot(A[i], e[j]))
             
 
-        sum = 0
-        for k in range(length):
-            sum += temp[k] * temp[k]
-        norm = np.multiply(temp, (1 / np.sqrt(sum)))
+#         sum = 0
+#         for k in range(length):
+#             sum += temp[k] * temp[k]
+#         norm = np.multiply(temp, (1 / np.sqrt(sum)))
 
-        e = np.append(e, [norm])
-        e = np.reshape(e, (i+1, length))
+#         e = np.append(e, [norm])
+#         e = np.reshape(e, (i+1, length))
 
-    r = np.zeros((length, length))
-    for l in range(length):
-        for m in range(l, length):
-            r[l][m] = np.dot(A[m], e[l])
+#     r = np.zeros((length, length))
+#     for l in range(length):
+#         for m in range(l, length):
+#             r[l][m] = np.dot(A[m], e[l])
 
-    return e.transpose(), r
+#     return e.transpose(), r
 
 def eigenvalue(x):
     eigen = []
     a = x
-    for i in range(100):
-        q, r = QR(a)
+    for i in range(50):
+        q, r = qr(a)
         a = np.dot(r, q)
     for j in range(a.shape[0]):
-        eigen.append(np.round(a[j][j],12))
+        eigen.append(np.round(a[j][j],6))
 
     return np.unique(eigen)[::-1]
 
@@ -111,9 +111,11 @@ def eigenvector(x, ei):
         eva.append(ev)
     return eva
 
-A = [[0,0,-2],[1,2,1],[1,0,3]]
-A = np.array(A)
-x = eigenvalue(A)
-print(eigenvector(A, x))
+# A = [[0,0,-2],[1,2,1],[1,0,3]]
+# A = np.array(A)
+# x = eigenvalue(A)
+# print(x)
+# print(eigenvector(A, x))
+
 
 

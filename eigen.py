@@ -1,5 +1,7 @@
 import numpy as np
 from numpy.linalg import qr
+from numpy.core.fromnumeric import transpose
+import math
 
 # def QR(x):
 
@@ -117,5 +119,43 @@ def eigenvector(x, ei):
 # print(x)
 # print(eigenvector(A, x))
 
+def normalizeVector (z):
+    normalize = z/np.linalg.norm(z)
+    return(normalize)
+    
+#print(normalizeVector(z))
 
+def svd(A):
+    mat = []
+    kiri = np.matmul(A,transpose(A))
+    kanan = np.matmul(transpose(A),A)
+    mat.append(kanan)
+    mat.append(kiri)
+
+    mat_svd = []
+    for item in mat:
+        ei = eigenvalue(item)
+        U1 = eigenvector(item,ei)
+        matUV = []
+
+        for i in range (len(U1)):
+            ev = U1[i]
+            for j in range(len(ev)):
+                a = ev[j]
+                b = normalizeVector(a)
+                matUV.append(b)
+        mat_svd.append(matUV)
+
+    U = transpose(mat_svd[1])
+    V = np.matrix(mat_svd[0])
+    
+    sigma = [[0 for i in range(len(V))] for j in range(len(U))]
+    if (len(U)< len(V)):
+        for p in range(len(U)):
+            sigma[p][p] = math.sqrt(ei[p])
+    else:
+        for p in range(len(V)):
+            sigma[p][p] = math.sqrt(ei[p])
+
+    return U,sigma,V
 

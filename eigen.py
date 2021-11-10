@@ -63,6 +63,56 @@ def makeone(x,a):
     for i in range(a, x.shape[1]):
         x[a][i] = x[a][i] / first
 
+# def eigenvector(x, ei):
+#     size = x.shape[0]
+#     eva=[]
+#     for i in range(ei.size):
+#         a = np.copy(x) * -1
+#         for j in range(size):
+#             a[j][j] += ei[i]
+#             np.append(a[j], 0)
+#         b = np.zeros((size, size+1))
+#         for j in range(size):
+#             for k in range(size):
+#                 b[j][k] = a[j][k]
+
+#         # echelon process
+#         for j in range(size):
+#             if (b[j][j] == 0):
+#                 for k in range(j+1, size):
+#                     if(b[k][j] != 0):
+#                         switchrow(b, j, k)
+#             if (b[j][j] != 0):
+#                 makeone(b,j)
+#                 for k in range(j+1,size):
+#                     num = b[k][j]
+#                     for l in range(j, size+1):
+#                         b[k][l] -= num * b[j][l]
+        
+#         for j in range(size-1, -1):
+#             if (b[j][j] != 0):
+#                 for k in range(j-1,-1):
+#                     num = b[k][j]
+#                     for l in range(j, size+1):
+#                         b[k][l] -= num * b[j][l]
+
+#         # turn into array of eigen vector
+#         ev = []
+#         for j in range(size):  
+#             if (b[j][j] == 0):
+#                 evv = []
+#                 for k in range(size): 
+#                     if k != j:
+#                         if (b[k][j] != 0):
+#                             evv.append(-b[k][j])
+#                         else:
+#                             evv.append(b[k][j])
+#                     else:
+#                         evv.append(1.0)
+#                 ev.append(evv)
+#         eva.append(ev)
+#     return eva
+
 def eigenvector(x, ei):
     size = x.shape[0]
     eva=[]
@@ -70,43 +120,28 @@ def eigenvector(x, ei):
         a = np.copy(x) * -1
         for j in range(size):
             a[j][j] += ei[i]
-            np.append(a[j], 0)
-        b = np.zeros((size, size+1))
+        # b = np.zeros((size, size+1))
+        # for j in range(size):
+        #     for k in range(size):
+        #         b[j][k] = a[j][k]
+        pl, u = lu(a, permute_l=True)
         for j in range(size):
-            for k in range(size):
-                b[j][k] = a[j][k]
-
-        # echelon process
-        for j in range(size):
-            if (b[j][j] == 0):
-                for k in range(j+1, size):
-                    if(b[k][j] != 0):
-                        switchrow(b, j, k)
-            if (b[j][j] != 0):
-                makeone(b,j)
+            if (u[j][j] != 0):
+                makeone(u,j)
                 for k in range(j+1,size):
-                    num = b[k][j]
-                    for l in range(j, size+1):
-                        b[k][l] -= num * b[j][l]
-        
-        for j in range(size-1, -1):
-            if (b[j][j] != 0):
-                for k in range(j-1,-1):
-                    num = b[k][j]
-                    for l in range(j, size+1):
-                        b[k][l] -= num * b[j][l]
-
-        # turn into array of eigen vector
+                    num = u[k][j]
+                    for l in range(j, size):
+                        u[k][l] -= num * u[j][l]
         ev = []
         for j in range(size):  
-            if (b[j][j] == 0):
+            if (u[j][j] == 0):
                 evv = []
                 for k in range(size): 
                     if k != j:
-                        if (b[k][j] != 0):
-                            evv.append(-b[k][j])
+                        if (u[k][j] != 0):
+                            evv.append(-u[k][j])
                         else:
-                            evv.append(b[k][j])
+                            evv.append(u[k][j])
                     else:
                         evv.append(1.0)
                 ev.append(evv)

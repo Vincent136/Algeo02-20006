@@ -1,5 +1,6 @@
 from eigen import *
 from bacaimage import *
+import time
 
 def percentage(height,width):
     rate = int(input("Image compression rate: "))
@@ -40,4 +41,8 @@ def Process(output_file):
     
     arrayToImage(output_image[0], output_image[1], output_image[2], output_file)
 
+
+
+start_time = time.time()
 Process("../test/miniont10%.jpg")
+print("execution time:  %s seconds" % (time.time() - start_time))

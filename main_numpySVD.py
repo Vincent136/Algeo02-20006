@@ -14,10 +14,8 @@ rgb = [red, green, blue]
 
 res = []
 for i in rgb:
-    U, s, VT = svd(i)
-    print (U)
-    print (s)
-    print (VT)
+    U, s, VT = np.linalg.svd(i)
+
     Sigma = np.zeros((height, width))
 
     # fill Sigma with diagonal s

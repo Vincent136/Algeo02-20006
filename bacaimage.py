@@ -5,7 +5,10 @@ import os
 
 def bacaImage(path):
     try:
-        return imageio.imread(path)
+        main_image = Image.open(path)
+        image_m =  main_image.mode
+        split_image = Image.Image.split(main_image)
+        return main_image, image_m, split_image
     except:
         return "File tidak ditemukan."
 
@@ -17,18 +20,19 @@ def arrayToImage(red, green, blue, path):
     for i in range(len(red)):
         outer = []
         for j in range(len(red[i])):
-           inner = []
-           inner.append(red[i][j])
-           inner.append(green[i][j]) 
-           inner.append(blue[i][j])
-           outer.append(inner)
+            inner=[]
+            inner.append(red[i][j])
+            inner.append(green[i][j]) 
+            inner.append(blue[i][j])
+            outer.append(inner)
         image.append(outer)
     image = np.array(image)
 
     #save image ke file
     image = image/255
     image = np.clip(image,0,1)
-    image_out = Image.fromarray(np.uint8(image*255))
+    image = np.uint8(image*255)
+    image_out = Image.fromarray(image)
 
     image_out.save(path)
 

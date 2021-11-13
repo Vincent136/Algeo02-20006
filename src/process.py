@@ -1,13 +1,18 @@
 from eigen import *
 from bacaimage import *
 
+def percentage(height,width):
+    rate = int(input("Image compression rate: "))
+    k = round(rate*0.01*height*width/(height+width+1))
+    return k
 
-def Process(output_file, k):
+def Process(output_file):
+
+    image = bacaImage("../test/minion.jpg")
+
+    k = percentage (image.shape[0],image.shape[1])
 
     singular = int(k)
-
-    image= bacaImage("../test/gambar.jpg")
-    
     red = image[:,:,0].astype(float)
     green = image[:,:,1].astype(float)
     blue = image[:,:,2].astype(float)
@@ -19,7 +24,6 @@ def Process(output_file, k):
         print("processing")
 
         U, sigma ,V = createSVD(item)
-        print(singular)
 
         U = U.T[0:singular].T
 
@@ -36,4 +40,4 @@ def Process(output_file, k):
     
     arrayToImage(output_image[0], output_image[1], output_image[2], output_file)
 
-Process("../test/output.jpg", 5)
+Process("../test/miniont10%.jpg")

@@ -33,12 +33,14 @@ dari SVD akan berupa informasi dari gambar yang terkompresi dengan ukuran yang l
 kecil dibanding gambar awal.
 
 ## Library
-Program ini dibuat dengan bahasa pemograman Python dan Library sebagai berikut
+Program ini dibuat dengan bahasa pemograman Python dan menggunakan HTML untuk tampilan frontend website.
+Library yang digunakan sebagai berikut
 1. Flask  (2.0.2) -> Untuk pembuatan _web application_
 2. imageio (2.10.1) -> Untuk mengubah gambar menjadi array
 3. numpy (1.21.3) -> Untuk mengolah array dan matriks
 4. Pillow (8.4.0) -> Untuk merekonstruksi array menjadi gambar
 5. Werkzeug (1.0.1) -> Untuk menghasilkan filename yang secure
+6. Bootstrap 5 -> Framework CSS
 
 ## Cara Menggunakan Program
 1. jalankan perintah ```flask run``` pada terminal

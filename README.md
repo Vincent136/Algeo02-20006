@@ -53,4 +53,6 @@ Website ini dapat mengkompres file gambar jpg, jpeg, dan png. Gambar yang diteri
 ## Referensi
 1. https://informatika.stei.itb.ac.id/~rinaldi.munir/AljabarGeometri/2020-2021/Algeo-18-Nilai-Eigen-dan-Vektor-Eigen-Bagian1.pdf
 2. http://www.math.utah.edu/~goller/F15_M2270/BradyMathews_SVDImage.pdf
+3. https://youtu.be/I9BBGulrOmo
+4. https://ristohinno.medium.com/qr-decomposition-903e8c61eaab
   

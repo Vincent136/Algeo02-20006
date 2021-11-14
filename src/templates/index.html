@@ -36,7 +36,9 @@
           <p class="fw-bold text-center">
             Image Compression Rate: {{ comp_rate }}
           </p>
-          <p class="fw-bold text-center">Execution time: {{ exe_time }} Seconds</p>
+          <p class="fw-bold text-center">
+            Execution time: {{ exe_time }} Seconds
+          </p>
           {% endif %}
         </ul>
 
@@ -90,6 +92,7 @@
       <div class="row">
         <div class="col">
           <p class="fw-bold text-center">Before</p>
+          <p class="text-center">Ukuran awal: {{ input_size }} bytes</p>
           <img
             class="float-start img"
             src="{{ url_for('displayUploads', filename = image_in) }}"
@@ -99,6 +102,7 @@
         <div class="col">
           {% if image_out %}
           <p class="fw-bold text-center">After</p>
+          <p class="text-center">Ukuran akhir: {{ output_size }} bytes</p>
           <img
             class="float-end img"
             src="{{ url_for('displayDownloads', filename = image_out) }}"

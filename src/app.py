@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+from numpy.core.fromnumeric import size
 from werkzeug.utils import secure_filename
 import os
 from process import *
@@ -15,6 +16,8 @@ app.config["FILE_TYPE"] = FILE_TYPE
 image_in = ""
 image_out = ""
 exe_time = ""
+input_size = ""
+output_size = ""
 
 
 def allowedFile(filename):
@@ -26,6 +29,8 @@ def handleImage():
     global image_in
     global image_out
     global exe_time
+    global input_size
+    global output_size
     output = ""
 
     if request.method == "POST":
@@ -36,9 +41,11 @@ def handleImage():
                 # image_out = "compressed_" + image_in
                 file.save(os.path.join(app.config["UPLOAD_PATH"], image_in))
                 output = "Image Uploaded Successfully"
+                input_path = os.path.join(app.config["UPLOAD_PATH"], image_in)
+                input_size = os.path.getsize(input_path)
             else:
                 output = "Invalid file type!"
-            return render_template("index.html", image_in=image_in, output1=output)
+            return render_template("index.html", image_in=image_in, output1=output, input_size = input_size,)
         elif "compress" in request.form:  # compress
             compression_rate = float(request.form["compression_rate"])
             if image_in != "":
@@ -47,6 +54,8 @@ def handleImage():
                 output_path = os.path.join(app.config["DOWNLOAD_PATH"], image_out)
                 exe_time = Process(input_path, output_path, compression_rate)
                 output = "Image Compressed Successfully"
+                input_size = os.path.getsize(input_path)
+                output_size = os.path.getsize(output_path)
             else:
                 output = "Upload image first!"
             return render_template(
@@ -56,6 +65,8 @@ def handleImage():
                 output2=output,
                 exe_time=exe_time,
                 comp_rate=compression_rate,
+                input_size = input_size,
+                output_size = output_size,
             )
     else:
         return render_template("index.html")

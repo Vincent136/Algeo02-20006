@@ -19,13 +19,17 @@ def Process(input_file, output_file, rate):
 
     print("Compress Rate: ",rate,"%")
 
-    rate_k = 100.0 - rate
+    rate_k = rate
 
     k = percentage(image.shape[0], image.shape[1], rate_k)
 
     print("Singular:", k)
 
     singular = int(k)
+    if (singular == 0):
+        singular = 1
+    
+    
     if (len(image.shape) == 3):
         rgb = []
 

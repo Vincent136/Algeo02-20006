@@ -9,18 +9,18 @@ def bacaImage(path):
     except:
         return "File tidak ditemukan."
 
-def arrayToImageRGB(red, green, blue, path):   
-    # program menerima input 3 buah matriks yaitu matriks red, green, dan blue dan string yang mengandung path dari file yang ingin disimpan
+def arrayToImage3Channel(first, second, third, path):   
+    # program menerima input 3 buah matriks yaitu matriks first, second, dan third dan string yang mengandung path dari file yang ingin disimpan
 
     # proses menggabungkan komponen rgb
     image = []
-    for i in range(len(red)):
+    for i in range(len(first)):
         outer = []
-        for j in range(len(red[i])):
+        for j in range(len(first[i])):
             inner=[]
-            inner.append(red[i][j])
-            inner.append(green[i][j]) 
-            inner.append(blue[i][j])
+            inner.append(first[i][j])
+            inner.append(second[i][j]) 
+            inner.append(third[i][j])
             outer.append(inner)
         image.append(outer)
     image = np.array(image)
@@ -33,19 +33,19 @@ def arrayToImageRGB(red, green, blue, path):
 
     image_out.save(path)
 
-def arrayToImageRGBA(red, green, blue,alpha, path):   
-    # program menerima input 3 buah matriks yaitu matriks red, green, dan blue dan string yang mengandung path dari file yang ingin disimpan
+def arrayToImage4Channel(first, second, third, fourth, path):   
+    # program menerima input 3 buah matriks yaitu matriks first, second, dan third dan string yang mengandung path dari file yang ingin disimpan
 
     # proses menggabungkan komponen rgb
     image = []
-    for i in range(len(red)):
+    for i in range(len(first)):
         outer = []
-        for j in range(len(red[i])):
+        for j in range(len(first[i])):
             inner=[]
-            inner.append(red[i][j])
-            inner.append(green[i][j]) 
-            inner.append(blue[i][j])
-            inner.append(alpha[i][j])
+            inner.append(first[i][j])
+            inner.append(second[i][j]) 
+            inner.append(third[i][j])
+            inner.append(fourth[i][j])
             outer.append(inner)
         image.append(outer)
     image = np.array(image)
@@ -58,3 +58,15 @@ def arrayToImageRGBA(red, green, blue,alpha, path):
 
     image_out.save(path)
 
+def arrayToImageSingleChannel(image, path):   
+    # program menerima input 3 buah matriks yaitu matriks first, second, dan third dan string yang mengandung path dari file yang ingin disimpan
+
+    # proses menggabungkan komponen rgb
+
+    #save image ke file
+    image = image/255
+    image = np.clip(image,0,1)
+    image = np.uint8(image*255)
+    image_out = Image.fromarray(image)
+
+    image_out.save(path)

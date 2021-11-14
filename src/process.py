@@ -26,17 +26,36 @@ def Process(input_file, output_file, rate):
     print("Singular:", k)
 
     singular = int(k)
-    red = image[:, :, 0].astype(float)
-    green = image[:, :, 1].astype(float)
-    blue = image[:, :, 2].astype(float)
-    rgb = [red, green, blue]
+    if (len(image.shape) == 3):
+        rgb = []
 
-    print("Processing SVD...")
+        for i in range(image.shape[2]):
+            rgb.append(image[:,:,i].astype(float))
 
-    output_image = []
-    for item in rgb:
+        print("Processing SVD...")
 
-        U, sigma, V = createSVD(item)
+        output_image = []
+        for item in rgb:
+     
+            U, sigma, V = createSVD(item)
+           
+
+            U = U.T[0:singular].T
+
+            sigma = sigma[0:singular]
+
+            V = V[0:singular]
+
+            hasil = U @ np.diag(sigma) @ V
+
+            output_image.append(hasil)
+
+        if (image.shape[2] == 4) :
+            arrayToImage4Channel(output_image[0], output_image[1], output_image[2], output_image[3], output_file)
+        elif (image.shape[2] == 3):
+            arrayToImage3Channel(output_image[0], output_image[1], output_image[2], output_file)
+    else:
+        U, sigma, V = createSVD(image)
 
         U = U.T[0:singular].T
 
@@ -46,18 +65,14 @@ def Process(input_file, output_file, rate):
 
         hasil = U @ np.diag(sigma) @ V
 
-        output_image.append(hasil)
+        arrayToImageSingleChannel(hasil, output_file)
 
-    if (image.shape[2] == 4) :
-        arrayToImageRGBA(output_image[0], output_image[1], output_image[2], image[:,:,3], output_file)
-    else:
-        arrayToImageRGB(output_image[0], output_image[1], output_image[2], output_file)
 
     print("Finished")
 
     return time.time() - start_time
 
-
+# Process("gambar.jpg", "gambar2.jpg",98)
 # start_time = time.time()
 # Process("../test/miniont10%.jpg")
 # print("execution time:  %s seconds" % (time.time() - start_time))

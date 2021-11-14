@@ -50,6 +50,6 @@ Program ini dibuat dengan bahasa pemograman Python dan Library sebagai berikut
 Website ini dapat mengkompres file gambar jpg, jpeg, dan png. Gambar yang diterima dapat berupa gambar _full color_, _grayscale_, maupun gambar png dengan _background_ transparan.
 
 ## Referensi
-https://informatika.stei.itb.ac.id/~rinaldi.munir/AljabarGeometri/2020-2021/Algeo-18-Nilai-Eigen-dan-Vektor-Eigen-Bagian1.pdf
-http://www.math.utah.edu/~goller/F15_M2270/BradyMathews_SVDImage.pdf
+1. https://informatika.stei.itb.ac.id/~rinaldi.munir/AljabarGeometri/2020-2021/Algeo-18-Nilai-Eigen-dan-Vektor-Eigen-Bagian1.pdf
+2. http://www.math.utah.edu/~goller/F15_M2270/BradyMathews_SVDImage.pdf
   

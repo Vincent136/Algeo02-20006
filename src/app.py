@@ -55,6 +55,7 @@ def handleImage():
                 image_out=image_out,
                 output2=output,
                 exe_time=exe_time,
+                comp_rate=compression_rate,
             )
     else:
         return render_template("index.html")

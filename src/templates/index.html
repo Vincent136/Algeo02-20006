@@ -13,6 +13,13 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
+    <style>
+      .img {
+        max-width: 500;
+        width: 100%;
+      }
+    </style>
+
     <title>Smol Image</title>
   </head>
   <body>
@@ -24,7 +31,11 @@
         <ul>
           <p class="fw-bold text-center">{{ output1 }}</p>
           <p class="fw-bold text-center">{{ output2 }}</p>
+          <hr />
           {% if image_out %}
+          <p class="fw-bold text-center">
+            Image Compression Rate: {{ comp_rate }}
+          </p>
           <p class="fw-bold text-center">Execution time: {{ exe_time }}</p>
           {% endif %}
         </ul>
@@ -72,24 +83,37 @@
         </div>
       </div>
     </div>
+
+    <br />
     {% if image_in %}
     <div class="container">
       <div class="row">
         <div class="col">
           <img
-            class="img-fluid"
+            class="float-start img"
             src="{{ url_for('displayUploads', filename = image_in) }}"
           />
         </div>
         {% endif %}
         <div class="col">
           {% if image_out %}
-          <div class="container">
-            <img
-              class="img-fluid"
-              src="{{ url_for('displayDownloads', filename = image_out) }}"
-            />
-          </div>
+          <img
+            class="float-end img"
+            src="{{ url_for('displayDownloads', filename = image_out) }}"
+          />
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row">
+        <div class="col-md offset-md-10">
+          <a
+            download
+            class="btn btn-outline-secondary"
+            href="{{ url_for('displayDownloads', filename = image_out) }}"
+            >Download Image</a
+          >
         </div>
       </div>
     </div>

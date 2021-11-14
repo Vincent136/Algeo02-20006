@@ -12,19 +12,26 @@ def percentage(height, width, rate):
 def Process(input_file, output_file, rate):
 
     start_time = time.time()
+
+    print("Time started")
+
     image = bacaImage(input_file)
 
-    print(rate)
+    print("Compress Rate: ",rate,"%")
 
-    k = percentage(image.shape[0], image.shape[1], rate)
+    rate_k = 100.0 - rate
 
-    print(k)
+    k = percentage(image.shape[0], image.shape[1], rate_k)
+
+    print("Singular:", k)
 
     singular = int(k)
     red = image[:, :, 0].astype(float)
     green = image[:, :, 1].astype(float)
     blue = image[:, :, 2].astype(float)
     rgb = [red, green, blue]
+
+    print("Processing SVD...")
 
     output_image = []
     for item in rgb:
@@ -33,17 +40,20 @@ def Process(input_file, output_file, rate):
 
         U = U.T[0:singular].T
 
-        # potong s
         sigma = sigma[0:singular]
 
-        # potong vh
         V = V[0:singular]
 
         hasil = U @ np.diag(sigma) @ V
 
         output_image.append(hasil)
 
-    arrayToImage(output_image[0], output_image[1], output_image[2], output_file)
+    if (image.shape[2] == 4) :
+        arrayToImageRGBA(output_image[0], output_image[1], output_image[2], image[:,:,3], output_file)
+    else:
+        arrayToImageRGB(output_image[0], output_image[1], output_image[2], output_file)
+
+    print("Finished")
 
     return time.time() - start_time
 

@@ -1,5 +1,5 @@
 # Smol Image
-  Smol image adalah website yang dapat digunakan untuk kompresi file gambar jpg dan png dengan bantuan algoritma SVD. Program ini dibuat untuk memenuhi salah satu tugas pada mata kuliah IF2123 Aljabar Linier dan Geometri yaitu aplikasi nilai eigen dan vektor eigen dalam kompresi gambar.
+  Smol image adalah website yang dapat digunakan untuk kompresi file gambar jpg ,jpeg ,dan png dengan bantuan algoritma SVD. Program ini dibuat untuk memenuhi salah satu tugas pada mata kuliah IF2123 Aljabar Linier dan Geometri yaitu aplikasi nilai eigen dan vektor eigen dalam kompresi gambar.
 
 ## Penjelasan Singkat mengenai Algoritma SVD
 Algoritma SVD didasarkan pada teorema dalam aljabar
@@ -38,6 +38,7 @@ Program ini dibuat dengan bahasa pemograman Python dan Library sebagai berikut
 2. imageio (2.10.1) -> untuk mengubah gambar menjadi array
 3. numpy (1.21.3) -> untuk mengolah array dan matriks
 4. Pillow (8.4.0) -> untuk merekonstruksi array menjadi gambar
+5. Werkzeug (1.0.1) -> menghasilkan filename yang secure
 
 ## Cara Menggunakan Program
 1. jalankan perintah ```flask run``` pada terminal
@@ -52,4 +53,6 @@ Website ini dapat mengkompres file gambar jpg, jpeg, dan png. Gambar yang diteri
 ## Referensi
 1. https://informatika.stei.itb.ac.id/~rinaldi.munir/AljabarGeometri/2020-2021/Algeo-18-Nilai-Eigen-dan-Vektor-Eigen-Bagian1.pdf
 2. http://www.math.utah.edu/~goller/F15_M2270/BradyMathews_SVDImage.pdf
+3. https://youtu.be/I9BBGulrOmo
+4. https://ristohinno.medium.com/qr-decomposition-903e8c61eaab
   

@@ -89,6 +89,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
+          <p class="fw-bold text-center">Before</p>
           <img
             class="float-start img"
             src="{{ url_for('displayUploads', filename = image_in) }}"
@@ -97,6 +98,7 @@
         {% endif %}
         <div class="col">
           {% if image_out %}
+          <p class="fw-bold text-center">After</p>
           <img
             class="float-end img"
             src="{{ url_for('displayDownloads', filename = image_out) }}"
